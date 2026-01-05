@@ -11,7 +11,7 @@ namespace Payments.Controllers
         [HttpPost("Pay")]
         public IActionResult Pay([FromBody] PaymentRequest request)
         {
-            // Basic validation
+           
             if (request == null ||
                 request.Amount <= 0 ||
                 request.CardDetails == null ||
@@ -20,16 +20,16 @@ namespace Payments.Controllers
                 return BadRequest("Invalid payment request");
             }
 
-            // Detect card type
+            
             var cardType = CalculateDiscount.GetCardType(
                 request.CardDetails.CardNumber
             );
 
-            // Calculate discount
+           
             var (discountApplied, finalAmount) =
                 CalculateDiscount.Calculate(cardType, request.Amount);
 
-            // Prepare response
+           
             var response = new PaymentResponse
             {
                 OriginalAmount = request.Amount,
