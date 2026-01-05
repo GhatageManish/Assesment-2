@@ -91,7 +91,7 @@ const CreditCardForm = ({ totalAmount, onSuccess, onBack }) => {
       } else {
         setError('Payment failed. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setError('Unable to connect to payment server. Please try again later.');
     } finally {
       setLoading(false);
